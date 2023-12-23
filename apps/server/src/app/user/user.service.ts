@@ -9,6 +9,7 @@ export class UserService {
 
   async findAll() {
     const found = await this.userRepository.findAll();
+    console.log('findAll', found);
     return plainToInstance(UserDTO, found);
   }
 

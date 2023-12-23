@@ -1,11 +1,14 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger';
 import { Exclude, Expose } from 'class-transformer';
 import { IsNotEmpty } from 'class-validator';
+import { ObjectId } from 'mongoose';
+import { MongoId } from '../decorators/mongo-id.decorator';
 @Exclude()
 export class UserDTO {
   @ApiProperty()
   @Expose()
-  _id: string;
+  @MongoId()
+  _id: ObjectId;
   @ApiProperty()
   @Expose()
   username: string;

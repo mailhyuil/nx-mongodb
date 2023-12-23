@@ -102,6 +102,7 @@
     "helmet": "^7.1.0",
     "json-schema-ref-parser": "^9.0.9",
     "lodash-es": "^4.17.21",
+    "mongodb": "^6.3.0",
     "mongoose": "^8.0.3",
     "morgan": "^1.10.0",
     "ng-openapi-gen": "^0.51.0",

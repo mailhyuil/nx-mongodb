@@ -9,13 +9,13 @@ import { UserModule } from './user/user.module';
 @Module({
   imports: [
     UserModule,
-    MongooseModule.forRoot('mongodb://localhost/test'),
+    MongooseModule.forRoot('mongodb://localhost:27017/test'),
     DiscoveryModule,
     ThrottlerModule.forRoot([
       {
         // default
-        ttl: 60000,
-        limit: 10,
+        ttl: 100000,
+        limit: 100,
       },
       {
         name: 'short',
@@ -45,7 +45,6 @@ import { UserModule } from './user/user.module';
       provide: APP_PIPE,
       useValue: new ValidationPipe({
         transformOptions: { enableImplicitConversion: true },
-        transform: true,
         whitelist: true,
         enableDebugMessages: true,
         exceptionFactory: (errors: ValidationError[]) => {

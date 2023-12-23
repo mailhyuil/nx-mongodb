@@ -1,8 +1,7 @@
 import { User } from '@mongo/libs';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
-import { Connection, Model } from 'mongoose';
-
+import mongoose, { Connection, Model } from 'mongoose';
 @Injectable()
 export class UserRepository {
   constructor(
@@ -42,12 +41,12 @@ export class UserRepository {
   }
 
   async delete(id: string) {
-    console.log('id from repository', id);
-    const deleted = await this.userModel.findByIdAndDelete(id).catch((e) => {
+    console.log(id);
+    const _id = new mongoose.Types.ObjectId(id);
+    console.log(_id);
+    await this.userModel.findByIdAndDelete(_id).catch((e) => {
       console.error(e);
       throw new BadRequestException('User을 삭제할 수 없습니다.');
     });
-    console.log('deleted from repository', deleted);
-    return deleted;
   }
 }

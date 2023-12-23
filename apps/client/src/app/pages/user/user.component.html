@@ -1,0 +1,38 @@
+@if(users(); as users){
+<div class="p-5 flex flex-col gap-5">
+  @for(user of users; track user.email){
+  <div
+    class="p-2 border cursor-pointer rounded-xl hover:bg-gray-50"
+    (click)="deleteUser(user._id)"
+  >
+    <div>{{ user.username }}</div>
+    <div>{{ user.email }}</div>
+    <div>{{ user.password }}</div>
+  </div>
+  }
+</div>
+<form
+  class="flex flex-col gap-2 p-5 *:border *:p-2 *:rounded-xl"
+  [formGroup]="formGroup"
+>
+  <input
+    formControlName="username"
+    type="text"
+    name="username"
+    placeholder="유저네임"
+  />
+  <input
+    formControlName="email"
+    type="text"
+    name="email"
+    placeholder="이메일"
+  />
+  <input
+    formControlName="password"
+    type="text"
+    name="password"
+    placeholder="패스워드"
+  />
+  <button (click)="createUser()" type="submit">submit</button>
+</form>
+}
