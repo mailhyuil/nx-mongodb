@@ -5,9 +5,11 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { ValidationError } from 'class-validator';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { PostModule } from './post/post.module';
 import { UserModule } from './user/user.module';
 @Module({
   imports: [
+    PostModule,
     UserModule,
     MongooseModule.forRoot('mongodb://localhost:27017/test'),
     DiscoveryModule,

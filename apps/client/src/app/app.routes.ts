@@ -6,9 +6,14 @@ export const appRoutes: Route[] = [
     path: '',
     component: DefaultLayoutComponent,
     children: [
+      { path: '', redirectTo: 'user', pathMatch: 'full' },
       {
-        path: '',
+        path: 'user',
         loadComponent: () => import('./pages/user/user.component'),
+      },
+      {
+        path: 'post',
+        loadComponent: () => import('./pages/post/post.component'),
       },
     ],
   },

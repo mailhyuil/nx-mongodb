@@ -1,7 +1,7 @@
-import { User } from '@mongo/libs';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import mongoose, { Connection, Model } from 'mongoose';
+import { User } from '../../schemas/user.schema';
 @Injectable()
 export class UserRepository {
   constructor(

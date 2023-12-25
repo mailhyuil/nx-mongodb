@@ -1,1 +1,18 @@
-<router-outlet></router-outlet>
+<div class="flex flex-col h-dvh">
+  <nav>
+    <ul class="flex gap-5 bg-red-200">
+      <li class="px-5 py-3 cursor-pointer" routerLink="/user">
+        <p>User</p>
+      </li>
+      <li class="px-5 py-3 cursor-pointer" routerLink="/post">
+        <p>Post</p>
+      </li>
+      <li class="px-5 py-3 cursor-pointer" routerLink="/home">
+        <p>Home</p>
+      </li>
+    </ul>
+  </nav>
+  <div class="overflow-y-auto grow bg-gray-50">
+    <router-outlet></router-outlet>
+  </div>
+</div>

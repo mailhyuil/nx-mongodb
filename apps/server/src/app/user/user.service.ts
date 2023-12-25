@@ -1,6 +1,7 @@
-import { CreateUserDTO, UpdateUserDTO, User, UserDTO } from '@mongo/libs';
+import { CreateUserDTO, UpdateUserDTO, UserDTO } from '@mongo/libs';
 import { Injectable } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
+import { User } from '../../schemas/user.schema';
 import { UserRepository } from './user.repository';
 
 @Injectable()
@@ -9,7 +10,6 @@ export class UserService {
 
   async findAll() {
     const found = await this.userRepository.findAll();
-    console.log('findAll', found);
     return plainToInstance(UserDTO, found);
   }
 
