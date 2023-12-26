@@ -2,7 +2,7 @@ import { CreatePostDTO } from '@mongo/libs';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import { Connection, Model } from 'mongoose';
-import { Post } from '../../schemas/post.schema';
+import { Post } from './post.schema';
 
 @Injectable()
 export class PostRepository {

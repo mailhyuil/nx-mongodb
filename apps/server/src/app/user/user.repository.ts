@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectConnection, InjectModel } from '@nestjs/mongoose';
 import mongoose, { Connection, Model } from 'mongoose';
-import { User } from '../../schemas/user.schema';
+import { User } from './user.schema';
 @Injectable()
 export class UserRepository {
   constructor(
@@ -24,7 +24,8 @@ export class UserRepository {
 
   async create(user: User): Promise<User> {
     const created = new this.userModel(user);
-    return created.save().catch((e) => {
+    return await created.save().catch((e) => {
+      console.error(e);
       throw new BadRequestException('User을 생성할 수 없습니다.');
     });
   }

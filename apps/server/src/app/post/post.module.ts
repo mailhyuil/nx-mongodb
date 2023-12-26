@@ -7,7 +7,7 @@ https://docs.nestjs.com/modules
 */
 
 import { Module } from '@nestjs/common';
-import { Post, PostSchema } from '../../schemas/post.schema';
+import { Post, PostSchema } from './post.schema';
 
 @Module({
   imports: [

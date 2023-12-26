@@ -14,7 +14,7 @@ async function bootstrap() {
   /** Compression */
   app.use(compression());
   /** Security */
-  app.use(helmet());
+  app.use(helmet({ contentSecurityPolicy: false }));
   /** Logger */
   app.use(morgan('dev'));
   /** CORS */

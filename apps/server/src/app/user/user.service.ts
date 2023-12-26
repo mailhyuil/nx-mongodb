@@ -1,8 +1,8 @@
 import { CreateUserDTO, UpdateUserDTO, UserDTO } from '@mongo/libs';
 import { Injectable } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
-import { User } from '../../schemas/user.schema';
 import { UserRepository } from './user.repository';
+import { User } from './user.schema';
 
 @Injectable()
 export class UserService {
