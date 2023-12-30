@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CreateUserDTO, UpdateUserDTO, UserDTO } from '@mongo/libs';
+import { Apollo, gql } from 'apollo-angular';
 import { ObjectId } from 'mongoose';
 import { Subject, switchMap } from 'rxjs';
 
@@ -10,11 +11,26 @@ import { Subject, switchMap } from 'rxjs';
 export class UserService {
   private _path = 'users';
   private _refresh$ = new Subject<void>();
-  constructor(private readonly httpClient: HttpClient) {}
+  constructor(
+    private readonly httpClient: HttpClient,
+    private readonly apollo: Apollo
+  ) {}
 
   findAll() {
     return this._refresh$.pipe(
-      switchMap(() => this.httpClient.get<UserDTO[]>(`${this._path}`))
+      switchMap(() =>
+        this.apollo.query<any>({
+          query: gql`
+            {
+              users {
+                username
+                email
+              }
+            }
+          `,
+        })
+      ),
+      switchMap((res) => res.data.users)
     );
   }
 

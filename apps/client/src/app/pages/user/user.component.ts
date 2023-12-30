@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CreateUserDTO, UserDTO } from '@mongo/libs';
+import { CreateUserDTO } from '@mongo/libs';
 import { ObjectId } from 'mongoose';
 import { UserService } from './user.service';
 
@@ -22,7 +22,8 @@ export type ModelFormGroup<T> = FormGroup<{
   imports: [FormsModule, ReactiveFormsModule],
 })
 export default class UserComponent implements OnInit {
-  users = toSignal<UserDTO[]>(this.userService.findAll());
+  users = toSignal<any>(this.userService.findAll());
+
   formGroup: ModelFormGroup<CreateUserDTO> = new FormGroup({
     username: new FormControl<string>('', {
       nonNullable: true,
@@ -40,6 +41,8 @@ export default class UserComponent implements OnInit {
   constructor(private readonly userService: UserService) {}
   ngOnInit(): void {
     this.userService.refresh();
+    const res = this.users();
+    console.log(res);
   }
   createUser() {
     const body = this.formGroup.getRawValue();

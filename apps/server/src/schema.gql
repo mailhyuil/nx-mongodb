@@ -10,8 +10,8 @@ type User {
 }
 
 type Query {
-  findById(id: String!): User!
-  findAll: [User!]!
+  user(id: String!): User!
+  users: [User!]!
 }
 
 type Mutation {
